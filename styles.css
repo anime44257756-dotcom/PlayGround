@@ -1,0 +1,197 @@
+:root {
+  --bg: #05070b;
+  --panel: rgba(10, 12, 16, 0.72);
+  --panel-border: rgba(255, 255, 255, 0.1);
+  --text: #edf4ff;
+  --accent: #fca311;
+  --danger: #ff5d5d;
+  --success: #7ee7a3;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: radial-gradient(circle at center, #141c2c 0%, #090d15 58%, #020407 100%);
+  color: var(--text);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+  position: relative;
+}
+
+canvas {
+  display: block;
+  width: 100vw;
+  height: 100vh;
+  background: #000;
+  cursor: crosshair;
+}
+
+#ui {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+}
+
+#title, #subtitle, #message, #controls, #hud, #startButton {
+  pointer-events: auto;
+}
+
+#title {
+  position: absolute;
+  top: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: clamp(20px, 3vw, 42px);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-weight: 900;
+  text-shadow: 0 0 24px rgba(255, 255, 255, 0.35);
+}
+
+#subtitle {
+  position: absolute;
+  top: 68px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 14px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  opacity: 0.8;
+}
+
+#startButton {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  padding: 16px 30px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  background: rgba(25, 30, 42, 0.9);
+  color: var(--text);
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  border-radius: 12px;
+  cursor: pointer;
+  box-shadow: 0 0 28px rgba(252, 163, 17, 0.22);
+}
+
+.panel {
+  position: absolute;
+  background: var(--panel);
+  border: 1px solid var(--panel-border);
+  border-radius: 12px;
+  backdrop-filter: blur(6px);
+  box-shadow: 0 0 18px rgba(0, 0, 0, 0.25);
+}
+
+#hud {
+  left: 18px;
+  bottom: 18px;
+  padding: 12px 16px;
+  width: min(260px, calc(100vw - 36px));
+}
+
+.stat-row {
+  display: grid;
+  grid-template-columns: 52px 1fr 52px;
+  align-items: center;
+  gap: 10px;
+  margin: 8px 0;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.stat-row.compact {
+  grid-template-columns: 52px 44px 52px 1fr;
+}
+
+.meter {
+  background: rgba(255,255,255,0.1);
+  height: 10px;
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+#powerFill {
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(90deg, var(--success), #c3ffc0, var(--accent));
+  transition: width 0.15s linear;
+}
+
+#message {
+  left: 50%;
+  bottom: 110px;
+  transform: translateX(-50%);
+  padding: 10px 16px;
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  max-width: min(500px, calc(100vw - 30px));
+  text-align: center;
+}
+
+#controls {
+  right: 18px;
+  bottom: 18px;
+  padding: 10px 12px;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  opacity: 0.9;
+}
+
+#mobileControls {
+  display: none;
+}
+
+#mobileControls button {
+  border: 1px solid rgba(255,255,255,0.22);
+  color: #fff;
+  background: rgba(15,18,26,0.78);
+  border-radius: 12px;
+  min-width: 46px;
+  min-height: 44px;
+  touch-action: none;
+  font-weight: 700;
+}
+
+.touchPad, .touchActions { display: flex; gap: 7px; align-items: center; }
+.touchPad { flex-direction: column; }
+.touchActions button { font-size: 9px; min-width: 68px !important; padding: 0 7px; }
+
+.small {
+  font-size: 10px !important;
+}
+
+.hidden {
+  display: none !important;
+}
+
+@media (max-width: 700px) {
+  #title { top: 16px; letter-spacing: 0.08em; }
+  #subtitle { top: 58px; letter-spacing: 0.12em; }
+  #controls { display: none; }
+  #message { bottom: 120px; }
+  #mobileControls {
+    display: flex;
+    left: 12px;
+    right: 12px;
+    bottom: max(14px, env(safe-area-inset-bottom));
+    padding: 8px;
+    justify-content: space-between;
+    align-items: flex-end;
+    background: transparent;
+    border: 0;
+    box-shadow: none;
+  }
+  #hud { bottom: 80px; left: 12px; width: min(230px, calc(100vw - 24px)); }
+}

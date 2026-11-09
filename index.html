@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FNAF 4: 3D Night</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div id="ui">
+      <div id="title">FNAF 4: 3D NIGHT</div>
+      <div id="subtitle">Survive until 6 AM</div>
+
+      <button id="startButton">Start Night</button>
+
+      <div id="hud" class="panel">
+        <div class="stat-row">
+          <span>Power</span>
+          <div class="meter">
+            <div id="powerFill"></div>
+          </div>
+          <span id="powerValue">100%</span>
+        </div>
+
+        <div class="stat-row compact">
+          <span>Night</span>
+          <span id="nightValue">1</span>
+          <span>Time</span>
+          <span id="clockValue">12:00 AM</span>
+        </div>
+      </div>
+
+      <div id="message" class="panel">Move through your bedroom. Check the hall, manage power, and survive the night.</div>
+      <div id="controls" class="panel small">
+        WASD move · Mouse look · Q / E doors · F flashlight · Shift sprint · R restart
+      </div>
+      <div id="mobileControls" class="panel">
+        <div class="touchPad">
+          <button data-key="KeyW">▲</button>
+          <div><button data-key="KeyA">◀</button><button data-key="KeyS">▼</button><button data-key="KeyD">▶</button></div>
+        </div>
+        <div class="touchActions">
+          <button data-key="KeyQ">LEFT DOOR</button>
+          <button data-key="KeyF">LIGHT</button>
+          <button data-key="KeyE">RIGHT DOOR</button>
+        </div>
+      </div>
+    </div>
+
+    <script type="module" src="./game.js"></script>
+  </body>
+</html>
